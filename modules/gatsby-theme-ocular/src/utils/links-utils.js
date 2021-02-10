@@ -34,7 +34,11 @@ function linkFromFileToFile(sourceFile, targetFile) {
   );
   const fileName = path.basename(targetFile, '.md');
   if (fileName === 'README') {
-    return relativePathFromDirToDir;
+    return path.join(
+      relativePathFromDirToDir,
+      '..',
+      path.basename(path.dirname(targetFile))
+    );
   }
   return path.join(relativePathFromDirToDir, fileName);
 }
