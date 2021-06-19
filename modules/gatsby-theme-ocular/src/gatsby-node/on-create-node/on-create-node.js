@@ -6,7 +6,6 @@ const docNodes = {};
 let tocNode = null;
 
 function onCreateNode({node, actions, getNode}, ocularOptions) {
-
   // Add missing fields to markdown nodes
   cleanupMarkdownNode({node, actions, getNode}, ocularOptions);
 

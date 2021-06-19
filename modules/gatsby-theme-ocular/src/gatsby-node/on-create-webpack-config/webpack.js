@@ -32,7 +32,7 @@ module.exports.onCreateWebpackConfig = function onCreateWebpackConfigOverride(op
     test: /\.jsx?$/,
 
     // Exclude all node_modules from transpilation, except for ocular
-    exclude: modulePath =>
+    exclude: (modulePath) =>
       /node_modules/.test(modulePath) &&
       !/node_modules\/(ocular|ocular-gatsby|gatsby-theme-ocular)/.test(modulePath)
   });

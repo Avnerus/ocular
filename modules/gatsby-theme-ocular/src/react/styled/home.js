@@ -5,8 +5,8 @@ import {isMobile} from './body';
 export const Banner = styled.section`
   position: relative;
   height: 30rem;
-  background: ${props => props.theme.colors[props.colortheme === 'dark' ? 'mono900' : 'mono400']};
-  color: ${props => props.theme.colors[props.colortheme === 'dark' ? 'mono100' : 'mono900']};
+  background: ${(props) => props.theme.colors[props.colortheme === 'dark' ? 'mono900' : 'mono400']};
+  color: ${(props) => props.theme.colors[props.colortheme === 'dark' ? 'mono100' : 'mono900']};
   z-index: 0;
   ${isMobile} {
     height: 80vh;
@@ -41,8 +41,8 @@ export const HeroExampleContainer = styled.div`
 `;
 
 export const Section = styled.section`
-  &:nth-child(2n+1) {
-    background: #E8E8E8;
+  &:nth-child(2n + 1) {
+    background: #e8e8e8;
   }
 `;
 
@@ -68,19 +68,23 @@ export const GetStartedLink = styled(Link)`
   display: inline-block;
   text-decoration: none;
   transition: background-color 250ms ease-in, color 250ms ease-in;
-  border: solid 2px ${props => props.theme.colors.primary400};
-  color: ${props => props.theme.colors[props.colortheme === 'dark' ? 'mono100' : 'mono900']};
-  border-image: linear-gradient(to right, ${props => props.theme.colors[props.colortheme === 'dark' ? 'primary400' : 'primary700']} 0%, ${props => props.theme.colors[props.colortheme === 'dark' ? 'primary100' : 'primary400']} 100%);
+  border: solid 2px ${(props) => props.theme.colors.primary400};
+  color: ${(props) => props.theme.colors[props.colortheme === 'dark' ? 'mono100' : 'mono900']};
+  border-image: linear-gradient(
+    to right,
+    ${(props) => props.theme.colors[props.colortheme === 'dark' ? 'primary400' : 'primary700']} 0%,
+    ${(props) => props.theme.colors[props.colortheme === 'dark' ? 'primary100' : 'primary400']} 100%
+  );
   border-image-slice: 2;
   &:visited {
-    color: ${props => props.theme.colors[props.colortheme === 'dark' ? 'mono100' : 'mono900']};
+    color: ${(props) => props.theme.colors[props.colortheme === 'dark' ? 'mono100' : 'mono900']};
   }
   &:active {
-    color: ${props => props.theme.colors.mono100};
+    color: ${(props) => props.theme.colors.mono100};
   }
   &:hover {
-    color: ${props => props.theme.colors.mono100};
-    background-color: ${props => props.theme.colors.primary400};
+    color: ${(props) => props.theme.colors.mono100};
+    background-color: ${(props) => props.theme.colors.primary400};
   }
 `;
 
@@ -93,7 +97,7 @@ export const Footer = styled.footer`
   background-size: 32px;
   background-repeat: repeat;
   background-position: 16px -8px;
-  color: ${props => props.theme.colors.mono100};
+  color: ${(props) => props.theme.colors.mono100};
 `;
 
 export const FooterText = styled.div`

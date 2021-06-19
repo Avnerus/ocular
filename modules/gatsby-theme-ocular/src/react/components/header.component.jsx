@@ -59,9 +59,13 @@ function UniversalHeaderLink({to, href, label}) {
   const isInternal = href ? isInternalURL(href) : isInternalURL(to);
 
   if (isInternal) {
-    return (<HeaderLink to={to || href}>{label}</HeaderLink>);
+    return <HeaderLink to={to || href}>{label}</HeaderLink>;
   } else {
-    return (<HeaderLinkExternal href={to || href} target="_blank">{label}</HeaderLinkExternal>);
+    return (
+      <HeaderLinkExternal href={to || href} target="_blank">
+        {label}
+      </HeaderLinkExternal>
+    );
   }
 }
 
@@ -69,9 +73,13 @@ function UniversalLogoLink({to, label}) {
   const isInternal = isInternalURL(to);
 
   if (isInternal) {
-    return (<HeaderLogo to={to}>{label}</HeaderLogo>);
+    return <HeaderLogo to={to}>{label}</HeaderLogo>;
   } else {
-    return (<HeaderLogoExternal href={to} target="_blank">{label}</HeaderLogoExternal>);
+    return (
+      <HeaderLogoExternal href={to} target="_blank">
+        {label}
+      </HeaderLogoExternal>
+    );
   }
 }
 
@@ -98,15 +106,16 @@ export function generateHeaderLinks(props) {
   ];
 
   if (config.ADDITIONAL_LINKS && config.ADDITIONAL_LINKS.length > 0) {
-    config.ADDITIONAL_LINKS.map(link => ({...link, label: link.name})).forEach(
-      link => {
-        if (Number.isFinite(link.index)) {
-          links.splice(link.index, 0, link);
-        } else {
-          links.push(link);
-        }
+    config.ADDITIONAL_LINKS.map((link) => ({
+      ...link,
+      label: link.name
+    })).forEach((link) => {
+      if (Number.isFinite(link.index)) {
+        links.splice(link.index, 0, link);
+      } else {
+        links.push(link);
       }
-    );
+    });
   }
 
   links.push(githubLink);
@@ -145,13 +154,13 @@ const ControlledHeader = ({
     </HeaderMenuLink>
   ));
 
-  const onClickHamburger = event => {
+  const onClickHamburger = (event) => {
     toggleMenu(!isMenuOpen);
     event.stopPropagation();
   };
 
   return isSmallScreen ? (
-    <StyledHeader onClick={() => toggleMenu(false)} >
+    <StyledHeader onClick={() => toggleMenu(false)}>
       <HeaderMenuBlock>
         <UniversalLogoLink to={HEADER_LINK_URL} label={PROJECT_NAME} />
         <HeaderMenu $collapsed={!isMenuOpen} $nbItems={links.length + 1}>
@@ -159,17 +168,23 @@ const ControlledHeader = ({
         </HeaderMenu>
       </HeaderMenuBlock>
 
-      {toggleToc && <TocToggle onClick={() => {
-        toggleMenu(false);
-        toggleToc(!isTocOpen);
-      }} >Table of Contents</TocToggle>}
+      {toggleToc && (
+        <TocToggle
+          onClick={() => {
+            toggleMenu(false);
+            toggleToc(!isTocOpen);
+          }}
+        >
+          Table of Contents
+        </TocToggle>
+      )}
 
       <HamburgerMenu onClick={onClickHamburger} />
 
-      {isMenuOpen && <HeaderMenuBackground/>}
+      {isMenuOpen && <HeaderMenuBackground />}
     </StyledHeader>
   ) : (
-    <StyledHeader onClick={() => toggleMenu(false)} >
+    <StyledHeader onClick={() => toggleMenu(false)}>
       <HeaderMenuBlock>
         <HamburgerMenu onClick={onClickHamburger} />
         <UniversalLogoLink to={HEADER_LINK_URL} label={PROJECT_NAME} />
@@ -177,7 +192,7 @@ const ControlledHeader = ({
           {externalLinks}
         </HeaderMenu>
       </HeaderMenuBlock>
-      
+
       <HeaderLinks links={links} />
 
       {isMenuOpen && <HeaderMenuBackground />}

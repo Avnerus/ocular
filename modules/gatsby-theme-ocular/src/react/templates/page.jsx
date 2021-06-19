@@ -9,8 +9,7 @@ export default class PageTemplate extends React.Component {
     return (
       <div style={{position: 'relative'}}>
         <MarkdownBody>
-          <Markdown path={this.props.location.pathname}
-            body={content.body} />
+          <Markdown path={this.props.location.pathname} body={content.body} />
         </MarkdownBody>
       </div>
     );

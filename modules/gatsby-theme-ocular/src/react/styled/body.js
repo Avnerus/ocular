@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-export const isMobile = props => `@media screen and (max-width: ${props.theme.breakpoints.medium}px)`;
+export const isMobile = (props) =>
+  `@media screen and (max-width: ${props.theme.breakpoints.medium}px)`;
 
 // top-level layoout
 export const BodyContainerFull = styled.div`
   margin: 0 auto;
-  padding: ${props => props.theme.sizing.scale1600} 0 0;
+  padding: ${(props) => props.theme.sizing.scale1600} 0 0;
   ${isMobile} {
     padding: 0;
     order: 2;
@@ -23,9 +24,9 @@ export const BodyContainerFull = styled.div`
 export const BodyContainerToC = styled.div`
   height: 100%;
   width: 100%;
-  padding: ${props => props.theme.sizing.scale1600} 0 0 300px;
+  padding: ${(props) => props.theme.sizing.scale1600} 0 0 300px;
   ${isMobile} {
-    height: calc(100vh - ${props => props.theme.sizing.scale1600});
+    height: calc(100vh - ${(props) => props.theme.sizing.scale1600});
     padding: 0;
     order: 2;
   }
@@ -38,7 +39,7 @@ export const BodyContainerInner = styled.div`
 `;
 
 export const Body = styled.div`
-  font: ${props => props.theme.typography.font300};
+  font: ${(props) => props.theme.typography.font300};
   width: 100vw;
   height: 100vh;
 `;

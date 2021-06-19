@@ -14,19 +14,17 @@ export default class InfoPanel extends PureComponent {
   }
 
   render() {
-    const { title, children, sourceLink} = this.props;
-    const { isExpanded } = this.state;
+    const {title, children, sourceLink} = this.props;
+    const {isExpanded} = this.state;
 
     return (
       <PanelContainer>
         <PanelTitle onClick={() => this.setState({isExpanded: !isExpanded})}>
           <div>{title}</div>
-          <PanelExpander $expanded={isExpanded} >
-            {isExpanded ? '✕' : 'i' }
-          </PanelExpander>
+          <PanelExpander $expanded={isExpanded}>{isExpanded ? '✕' : 'i'}</PanelExpander>
         </PanelTitle>
         <PanelContent $expanded={isExpanded}>{children}</PanelContent>
-        <SourceLink $expanded={isExpanded} href={sourceLink} target="_new" >
+        <SourceLink $expanded={isExpanded} href={sourceLink} target="_new">
           View Code ↗
         </SourceLink>
       </PanelContainer>

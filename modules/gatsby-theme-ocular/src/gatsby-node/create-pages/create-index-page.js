@@ -14,7 +14,7 @@ function queryMarkdown(graphql, path) {
         body
       }
     }`
-  ).then(result => {
+  ).then((result) => {
     if (result.errors) {
       /* eslint no-console: "off" */
       console.log(result.errors);
@@ -28,7 +28,7 @@ module.exports = function createIndexPage({graphql, actions}, ocularOptions) {
   const {createPage} = actions;
 
   const pages = ocularOptions.PAGES ? ocularOptions.PAGES.slice() : [];
-  let indexPage = pages.find(p => p.path === '/');
+  let indexPage = pages.find((p) => p.path === '/');
   if (indexPage) {
     indexPage.componentUrl = indexPage.componentUrl || PAGE_TEMPLATES['INDEX_PAGE_URL'];
   } else {
@@ -47,11 +47,9 @@ module.exports = function createIndexPage({graphql, actions}, ocularOptions) {
   )();
 
   for (const page of pages) {
-    const loadContent = page.content
-      ? queryMarkdown(graphql, page.content)
-      : Promise.resolve(null);
+    const loadContent = page.content ? queryMarkdown(graphql, page.content) : Promise.resolve(null);
 
-    loadContent.then(result => {
+    loadContent.then((result) => {
       createPage({
         component: page.componentUrl || PAGE_TEMPLATES['MARKDOWN_PAGE_URL'],
         path: page.path,

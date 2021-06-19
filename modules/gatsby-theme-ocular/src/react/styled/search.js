@@ -7,9 +7,9 @@ import {A} from './typography';
 
 export const SearchContainer = styled.div`
   position: relative;
-  height: ${props => props.theme.sizing.scale1000};
+  height: ${(props) => props.theme.sizing.scale1000};
   margin-bottom: 20px;
-  background: ${props => props.theme.colors.mono200};
+  background: ${(props) => props.theme.colors.mono200};
 `;
 
 export const IconContainer = styled.div`
@@ -17,30 +17,30 @@ export const IconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${props => props.theme.sizing.scale1000};
-  height: ${props => props.theme.sizing.scale1000};
+  width: ${(props) => props.theme.sizing.scale1000};
+  height: ${(props) => props.theme.sizing.scale1000};
 `;
 
 export const SearchInput = styled.input`
   width: 100%;
-  border: 1px solid ${props => props.theme.colors.mono500};
+  border: 1px solid ${(props) => props.theme.colors.mono500};
   transition: 0.3s;
   font-size: 14px;
   font-weight: 500;
   line-jeight: 20px;
   padding: 10px 10px 10px 40px;
   &:focus {
-    box-shadow: ${props => props.theme.lighting.shadow600};
+    box-shadow: ${(props) => props.theme.lighting.shadow600};
     border-color: rgb(39, 110, 241);
     outline: none;
   }
 `;
 
 export const MainSearch = styled.main`
-  font: ${props => props.theme.typography.font300};
+  font: ${(props) => props.theme.typography.font300};
   width: 600px;
   max-width: 90%;
-  margin: ${props => props.theme.sizing.scale2400} auto 0px;
+  margin: ${(props) => props.theme.sizing.scale2400} auto 0px;
 `;
 
 export const SearchResultItem = styled.div`
@@ -48,18 +48,18 @@ export const SearchResultItem = styled.div`
 `;
 
 export const SearchResultLink = styled(Link)`
-  font: ${props => props.theme.typography.font450};
+  font: ${(props) => props.theme.typography.font450};
   margin-bottom: 0.5rem;
-  color: ${props => props.theme.colors.linkText};
+  color: ${(props) => props.theme.colors.linkText};
   text-decoration: none;
   &:visited {
-    color: ${props => props.theme.colors.linkVisited};
+    color: ${(props) => props.theme.colors.linkVisited};
   }
   &:active {
-    color: ${props => props.theme.colors.linkHover};
+    color: ${(props) => props.theme.colors.linkHover};
   }
   &:hover {
-    color: ${props => props.theme.colors.linkHover};
+    color: ${(props) => props.theme.colors.linkHover};
   }
 `;
 

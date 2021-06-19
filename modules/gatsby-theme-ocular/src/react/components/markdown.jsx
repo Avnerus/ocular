@@ -1,6 +1,6 @@
 import React, {cloneElement} from 'react';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { MDXProvider } from '@mdx-js/react';
+import {MDXRenderer} from 'gatsby-plugin-mdx';
+import {MDXProvider} from '@mdx-js/react';
 
 // note - these typographic elements are taken directly from baseui.
 // we can consider customizing them by first importing in styled/index, then
@@ -38,20 +38,17 @@ const CustomLinkWrapper = (path, relativeLinks, config) => {
   return CustomLink;
 };
 
-const CustomPre = props => {
+const CustomPre = (props) => {
   // the point of this component is to distinguish styling of inline <code /> elements
   // with code blocks (ie <pre><code>...</code></pre>).
 
   const {children, ...otherProps} = props;
   return (
     <Pre {...otherProps}>
-      {React.Children.map(children, child => {
+      {React.Children.map(children, (child) => {
         // this means a child of this <pre> element is a <code> element, or <code> element styled
         // by Styletron
-        if (
-          child.type === 'code' ||
-          child.type.displayName === 'Styled(code)'
-        ) {
+        if (child.type === 'code' || child.type.displayName === 'Styled(code)') {
           return <CodeBlock {...child.props} />;
         }
         // else we just clone the element as is
@@ -67,7 +64,7 @@ const CODE_REGEX = /code-classlanguage-text(.*?)code/g;
 // Sanitize auto generated anchor ids
 const CustomHeader = (ComponentType, id, props, anchors) => {
   if (!id) {
-    return <ComponentType {...props} />
+    return <ComponentType {...props} />;
   }
 
   if (API_REGEX.test(id)) {
@@ -86,17 +83,21 @@ const CustomHeader = (ComponentType, id, props, anchors) => {
   const children = props.children.slice();
   const autolink = children[0];
   if (autolink.props && autolink.props.href) {
-    children[0] = cloneElement(autolink, {key: 'anchor', href: `#${id}`})
+    children[0] = cloneElement(autolink, {key: 'anchor', href: `#${id}`});
   }
-  return <ComponentType {...props} id={id}>{children}</ComponentType>;
-}
+  return (
+    <ComponentType {...props} id={id}>
+      {children}
+    </ComponentType>
+  );
+};
 
-export default props => {
+export default (props) => {
   const {relativeLinks, path, config} = props;
   // note - we can add many other custom components.
 
   const anchors = {};
-  const HeaderWrapper = ComponentType => {
+  const HeaderWrapper = (ComponentType) => {
     return ({id, ...props}) => CustomHeader(ComponentType, id, props, anchors);
   };
 
@@ -120,5 +121,9 @@ export default props => {
     a: relativeLinks ? CustomLinkWrapper(path, relativeLinks, config) : A
   };
 
-  return <MDXProvider components={components} ><MDXRenderer>{props.body}</MDXRenderer></MDXProvider>;
-}
+  return (
+    <MDXProvider components={components}>
+      <MDXRenderer>{props.body}</MDXRenderer>
+    </MDXProvider>
+  );
+};

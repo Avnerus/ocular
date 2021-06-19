@@ -32,7 +32,7 @@ const GOOD_CONFIG = {
   webpack: {}
 };
 
-test('validateConfig', t => {
+test('gatsby-theme-ocular#validateConfig', (t) => {
   t.deepEquals(
     validateConfig(GOOD_CONFIG, CONFIG_SCHEMA),
     [],
@@ -42,15 +42,15 @@ test('validateConfig', t => {
   t.deepEquals(
     validateConfig({}, CONFIG_SCHEMA),
     [
-      'Examples can\'t be blank',
+      "Examples can't be blank",
       'Docs DOCS needs to be an object.',
-      'Project type can\'t be blank',
-      'Project name can\'t be blank,Project name should be the project\'s name on GitHub.',
-      'Project url can\'t be blank',
-      'Project desc can\'t be blank,Project desc should be the project\'s description',
-      'Project image can\'t be blank,Project image should be the project\'s social media image',
+      "Project type can't be blank",
+      "Project name can't be blank,Project name should be the project's name on GitHub.",
+      "Project url can't be blank",
+      "Project desc can't be blank,Project desc should be the project's description",
+      "Project image can't be blank,Project image should be the project's social media image",
       'Path prefix should be the prefix added to all paths on the site',
-      'Additional links can\'t be blank',
+      "Additional links can't be blank",
       'Webpack webpack needs to be an object.'
     ],
     'Get all errors when config is empty'

@@ -27,9 +27,11 @@ function renderHighlightedText(lines, regex, lineNumber = 0) {
   }
 
   return lines.split(regex).map((part, i) => {
-    return i % 2 === 0
-      ? <span key={`${lineNumber}-${i}`}>{part}</span>
-      : <SearchResultHighlight key={`${lineNumber}-${i}`}>{part}</SearchResultHighlight>
+    return i % 2 === 0 ? (
+      <span key={`${lineNumber}-${i}`}>{part}</span>
+    ) : (
+      <SearchResultHighlight key={`${lineNumber}-${i}`}>{part}</SearchResultHighlight>
+    );
   });
 }
 
@@ -50,7 +52,10 @@ export default class SearchPage extends React.Component {
     const {lastQuery} = this.state;
     const {pathContext} = this.props;
     this.setState({debouncing: false});
-    currentQuery = currentQuery.replace(/[^\w-]/g, ' ').replace(/\s+/g, ' ').trim();
+    currentQuery = currentQuery
+      .replace(/[^\w-]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
 
     if (currentQuery === lastQuery) {
       return;
@@ -112,7 +117,7 @@ export default class SearchPage extends React.Component {
   renderResults() {
     const {results, regex, visibleResultsCount} = this.state;
 
-    return results.slice(0, visibleResultsCount).map(result => {
+    return results.slice(0, visibleResultsCount).map((result) => {
       if (!result.element) {
         result.element = (
           <SearchResultItem key={result.node.slug}>
@@ -147,32 +152,31 @@ export default class SearchPage extends React.Component {
         <div>
           {currentQuery && !debouncing && (
             <div>
-              {results.length
-                ? `${results.length} articles found.`
-                : `No result for this query.`}
+              {results.length ? `${results.length} articles found.` : `No result for this query.`}
             </div>
           )}
 
           {!currentQuery && !debouncing && (
-            <div>
-              {pathContext.data
-                ? `${pathContext.data.length} articles indexed.`
-                : ''}
-            </div>
+            <div>{pathContext.data ? `${pathContext.data.length} articles indexed.` : ''}</div>
           )}
-          <div>
-            {this.renderResults()}
-          </div>
-          {visibleResultsCount < results.length &&
-            <SearchResultPager onClick={() => this.setState({visibleResultsCount: visibleResultsCount + RESULTS_PER_PAGE})} >Load more...</SearchResultPager>}
+          <div>{this.renderResults()}</div>
+          {visibleResultsCount < results.length && (
+            <SearchResultPager
+              onClick={() =>
+                this.setState({
+                  visibleResultsCount: visibleResultsCount + RESULTS_PER_PAGE
+                })
+              }
+            >
+              Load more...
+            </SearchResultPager>
+          )}
         </div>
       </MainSearch>
     );
   }
 
   render() {
-    return (
-      <WebsiteConfigConsumer>{() => this.renderPage()}</WebsiteConfigConsumer>
-    );
+    return <WebsiteConfigConsumer>{() => this.renderPage()}</WebsiteConfigConsumer>;
   }
 }

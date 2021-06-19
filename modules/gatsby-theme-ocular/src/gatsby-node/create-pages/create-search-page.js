@@ -24,20 +24,16 @@ module.exports = function createSearchPage({graphql, actions}, ocularOptions) {
         }
       }
     }
-  `).then(results => {
+  `).then((results) => {
     const componentUrl = PAGE_TEMPLATES['SEARCH_PAGE_URL'];
 
-    log.log(
-      {color: COLOR.CYAN, priority: 1},
-      `Creating search page from url ${componentUrl}}`
-    )();
-
+    log.log({color: COLOR.CYAN, priority: 1}, `Creating search page from url ${componentUrl}}`)();
 
     createPage({
       path: '/search',
       component: componentUrl,
       context: {
-        data: results.data.allMdx.edges.map(e => ({
+        data: results.data.allMdx.edges.map((e) => ({
           excerpt: e.node.excerpt,
           headings: e.node.headings,
           slug: e.node.fields.slug,

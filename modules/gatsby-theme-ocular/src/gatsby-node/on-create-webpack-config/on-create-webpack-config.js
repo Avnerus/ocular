@@ -42,7 +42,11 @@ function logWebpackConfig(stage, config) {
   } else {
     log.log(
       {color: COLOR.CYAN, priority: 1},
-      `STAGE ${stage}: Webpack started with aliases ${JSON.stringify(config.WEBPACK_ALIAS || {}, stringify, 2)}`
+      `STAGE ${stage}: Webpack started with aliases ${JSON.stringify(
+        config.WEBPACK_ALIAS || {},
+        stringify,
+        2
+      )}`
     )();
   }
 }
@@ -95,13 +99,15 @@ class WebpackRule {
     // Uncomment to restrict to babel loaders only
     // const isBabelLoader = WebpackRule.isBabelLoader(rule);
 
-    const excludeNeedsReplace =
-      WebpackRule.checkIfExcludes(rule, `node_modules/${MODULE_NAME}/`);
-      // && (!WEBPACK_EXCLUDE_REGEXP || WebpackRule.checkIfIncludes(rule, WEBPACK_EXCLUDE_REGEXP));
+    const excludeNeedsReplace = WebpackRule.checkIfExcludes(rule, `node_modules/${MODULE_NAME}/`);
+    // && (!WEBPACK_EXCLUDE_REGEXP || WebpackRule.checkIfIncludes(rule, WEBPACK_EXCLUDE_REGEXP));
 
     if (excludeNeedsReplace) {
       rule.exclude = WebpackRule.getExcludeOverride(rule, ocularOptions);
-      log.log({priority: 1, color: COLOR.RED}, `Replaced excludes for webpack rule ${WebpackRule.getLoader(rule)}`)();
+      log.log(
+        {priority: 1, color: COLOR.RED},
+        `Replaced excludes for webpack rule ${WebpackRule.getLoader(rule)}`
+      )();
     }
   }
 
@@ -138,7 +144,7 @@ class WebpackRule {
         return true;
       }
       return isExcluded;
-    }
+    };
   }
 }
 
@@ -153,10 +159,12 @@ function getWebpackConfigOverrides(config, newConfig, ocularOptions) {
   newConfig.node = newConfig.node || {};
   newConfig.node.fs = 'empty';
 
-  newConfig.module = config.module || {};;
+  newConfig.module = config.module || {};
   newConfig.module.rules = config.module.rules;
 
-  const aliases = ocularOptions.WEBPACK_ALIAS || (ocularOptions.webpack && ocularOptions.webpack.resolve && ocularOptions.webpack.resolve.alias);
+  const aliases =
+    ocularOptions.WEBPACK_ALIAS ||
+    (ocularOptions.webpack && ocularOptions.webpack.resolve && ocularOptions.webpack.resolve.alias);
   Object.assign(newConfig.resolve.alias, aliases);
 
   return newConfig;
@@ -165,7 +173,7 @@ function getWebpackConfigOverrides(config, newConfig, ocularOptions) {
 // Looks like onCreateWebpackConfig does not receive theme options?
 function onCreateWebpackConfig(opts, ocularOptions = global.ocularOptions) {
   const {
-    stage,     // build stage: ‘develop’, ‘develop-html’, ‘build-javascript’, or ‘build-html’
+    stage, // build stage: ‘develop’, ‘develop-html’, ‘build-javascript’, or ‘build-html’
     // rules,     // Object (map): set of preconfigured webpack config rules
     // loaders,   // Object (map): set of preconfigured webpack config loaders
     // plugins,    // Object (map): A set of preconfigured webpack config plugins

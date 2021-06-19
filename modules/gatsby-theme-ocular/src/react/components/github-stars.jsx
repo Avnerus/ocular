@@ -20,8 +20,8 @@ export default class GithubStars extends Component {
 
     const {project} = this.props;
     fetch(`https://api.github.com/repos/${project}`)
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         cachedResponse = response;
         this.setState({response});
       });
@@ -33,9 +33,7 @@ export default class GithubStars extends Component {
     return (
       <Fragment>
         {count}
-        <StarIcon
-          style={{marginLeft: '0.2rem', position: 'relative', top: -1}}
-        />
+        <StarIcon style={{marginLeft: '0.2rem', position: 'relative', top: -1}} />
       </Fragment>
     );
   }

@@ -1,5 +1,34 @@
 # CHANGELOG (ocular-dev-tools)
 
+## v1.0.0-alpha.5
+
+- feat(dev-tools): export getOcularConfig (#363)
+- chore: Add github CI (#364)
+
+## v1.0.0-alpha.4
+
+- chore: Move deepmerge dep to dev-tools
+
+## v1.0.0-alpha.3
+
+- feat(dev-tools): Add typescript support (#361)
+
+## v1.0.0-alpha.3
+
+- feat(dev-tools): Add deepMerge export
+
+## v1.0.0-alpha.1
+- feat: ocular-tsify using ts-smoosh (#357)
+- chore: Improve JSDoc (#354)
+- feat: log commands issued by ocular (#353)
+- feat: Add typescript exports for ocular functions, and test example (#352)
+
+## v0.3.0
+- Change build targets (#349)
+
+## v0.2.3
+- Fix coverage calculation (#348)
+
 ## v0.2.2
 - Support custom tag in publish script (#347)
 

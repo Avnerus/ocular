@@ -2,13 +2,9 @@ import React, {Component} from 'react';
 
 export default class ChevronDownIcon extends Component {
   render() {
-    const {
-      className = '',
-      width = 24,
-      height = 24
-    } = this.props;
+    const {className = '', width = 24, height = 24} = this.props;
     return (
-      <svg viewBox="0 0 24 24" className={className} width={width} height={height} >
+      <svg viewBox="0 0 24 24" className={className} width={width} height={height}>
         <title>Chevron Down</title>
         <path
           transform="rotate(270, 12, 12)"

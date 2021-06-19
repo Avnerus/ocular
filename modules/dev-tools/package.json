@@ -2,7 +2,7 @@
   "name": "ocular-dev-tools",
   "description": "Dev tools for our Javascript frameworks",
   "license": "MIT",
-  "version": "0.2.2",
+  "version": "1.0.0-alpha.5",
   "keywords": [
     "javascript"
   ],
@@ -11,12 +11,16 @@
     "url": "https://github.com/uber-web/ocular/"
   },
   "files": [
+    "src",
     "config",
     "node",
     "scripts",
     "templates",
-    "test"
+    "test",
+    "CHANGELOG.md"
   ],
+  "types": "./src/index.d.ts",
+  "main": "./src/index.js",
   "bin": {
     "ocular-bootstrap": "./scripts/bootstrap.sh",
     "ocular-clean": "./scripts/clean.sh",
@@ -25,9 +29,12 @@
     "ocular-test": "./scripts/test.sh",
     "ocular-metrics": "./scripts/metrics.sh",
     "ocular-publish": "./scripts/publish.sh",
-    "ocular-bump": "./scripts/bump.js"
+    "ocular-bump": "./scripts/bump.js",
+    "ocular-tsify": "./scripts/ts-smoosh.js"
   },
   "scripts": {
+    "bootstrap": "yarn install-fast && ocular-bootstrap",
+    "install-fast": "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn",
     "clean": "echo No build needed",
     "build": "echo No build needed",
     "lint": "npm run lint-yarn",
@@ -41,12 +48,26 @@
     "@babel/core": "^7.8.7",
     "@babel/plugin-transform-runtime": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
-    "babel-eslint": "^10.0.3",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@babel/runtime": "7.12.0",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "8.2.2",
     "babel-plugin-istanbul": "^5.0.0",
     "babel-plugin-version-inline": "^1.0.0",
-    "eslint": "^6.7.2",
+    "deepmerge": "^4.2.2",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint": "^7.24.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.7.0",
     "eslint-config-uber-es2015": "^3.0.0",
+    "eslint-config-uber-jsx": "^3.3.3",
+    "eslint-plugin-markdown": "^1.0.2",
     "glob": "^7.1.4",
     "handlebars": "^4.1.2",
     "html-webpack-plugin": "^3.2.0",
@@ -54,17 +75,18 @@
     "lodash": "^4.17.13",
     "lodash.template": "^4.5.0",
     "module-alias": "^2.0.0",
-    "nyc": "^13.3.0",
-    "prettier": "1.14.3",
+    "nyc": "^15.0.0",
+    "prettier": "^1.17.0",
     "prettier-check": "2.0.0",
     "source-map-loader": "^0.2.3",
-    "tape": "^4.9.2",
+    "tape": "^5.2.2",
     "tape-catch": "^1.0.4",
     "tape-promise": "^4.0.0",
-    "webpack": "^4.28.4",
+    "typescript": "^4.2.3",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14"
+    "webpack-dev-server": "^3.1.14",
+    "webpack": "^4.28.4"
   },
   "devDependencies": {
     "@probe.gl/test-utils": "^3.0.2",

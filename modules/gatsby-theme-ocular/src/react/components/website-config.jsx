@@ -30,7 +30,7 @@ export class WebsiteConfigProvider extends React.Component {
   }
 
   setData(newData) {
-    this.setState(state => ({
+    this.setState((state) => ({
       data: {
         ...state.data,
         ...newData

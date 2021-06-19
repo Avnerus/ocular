@@ -3,7 +3,10 @@ import React, {useEffect} from 'react';
 import Helmet from 'react-helmet';
 
 function joinPath(...parts) {
-  return parts.map(part => part && part.replace(/^\//, '').replace(/\/$/, '')).filter(Boolean).join('/');
+  return parts
+    .map((part) => part && part.replace(/^\//, '').replace(/\/$/, ''))
+    .filter(Boolean)
+    .join('/');
 }
 
 // TODO/ib - modify this component to work with ocular content
@@ -14,7 +17,9 @@ export default function SEO({config, path, pageContext}) {
     }
     if (typeof window !== 'undefined') {
       window.dataLayer = window.dataLayer || [];
-      function gtag(){window.dataLayer.push(arguments);}
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
       gtag('js', new Date());
       gtag('config', config.GA_TRACKING_ID);
     }
@@ -75,9 +80,7 @@ export default function SEO({config, path, pageContext}) {
       <meta name="image" content={image} />
 
       {/* Schema.org tags */}
-      <script type="application/ld+json">
-        {JSON.stringify(schemaOrgJSONLD)}
-      </script>
+      <script type="application/ld+json">{JSON.stringify(schemaOrgJSONLD)}</script>
 
       {/* OpenGraph tags */}
       <meta property="og:url" content={isPost ? postURL : siteURL} />
@@ -85,23 +88,22 @@ export default function SEO({config, path, pageContext}) {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta
-        property="fb:app_id"
-        content={config.siteFBAppID ? config.siteFBAppID : ''}
-      />
+      <meta property="fb:app_id" content={config.siteFBAppID ? config.siteFBAppID : ''} />
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta
-        name="twitter:creator"
-        content={config.userTwitter ? config.userTwitter : ''}
-      />
+      <meta name="twitter:creator" content={config.userTwitter ? config.userTwitter : ''} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
 
       {/* Google Analytics */}
-      {config.GA_TRACKING_ID && <script async src={`https://www.googletagmanager.com/gtag/js?id=${config.GA_TRACKING_ID}`}></script>}
+      {config.GA_TRACKING_ID && (
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${config.GA_TRACKING_ID}`}
+        ></script>
+      )}
     </Helmet>
   );
 }

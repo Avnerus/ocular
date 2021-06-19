@@ -24,9 +24,8 @@ function getSubmodules(packageRoot) {
   const parentPath = resolve(packageRoot, './modules');
 
   if (fs.existsSync(parentPath)) {
-    //monorepo
-    fs.readdirSync(parentPath)
-    .forEach(item => {
+    // monorepo
+    fs.readdirSync(parentPath).forEach((item) => {
       const itemPath = resolve(parentPath, item);
       const moduleInfo = getModuleInfo(itemPath);
       if (moduleInfo) {
@@ -48,8 +47,8 @@ function getAliases(mode = 'src', packageRoot = process.env.PWD) {
   for (const moduleName in submodules) {
     const {path, packageInfo} = submodules[moduleName];
     aliases[`${moduleName}/test`] = resolve(path, 'test');
-    if (mode === 'src') {
-      aliases[moduleName] = resolve(path, 'src');
+    if (mode) {
+      aliases[moduleName] = resolve(path, mode); // e.g 'src'
     } else {
       const subPath = packageInfo.main && packageInfo.main.replace('/index.js', '');
       aliases[moduleName] = subPath ? resolve(path, subPath) : path;
@@ -60,4 +59,3 @@ function getAliases(mode = 'src', packageRoot = process.env.PWD) {
 }
 
 module.exports = getAliases;
-

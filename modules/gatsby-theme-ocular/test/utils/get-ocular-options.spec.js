@@ -18,11 +18,11 @@ const GOOD_CONFIG = {
   ]
 };
 
-test('getOcularOptions', t => {
+test('getOcularOptions', (t) => {
   t.deepEquals(
     getOcularOptions(GOOD_CONFIG),
     OPTIONS,
-    'Returns ocular\'s options from a mix of plugins in a gatsby config'
+    "Returns ocular's options from a mix of plugins in a gatsby config"
   );
 
   t.end();

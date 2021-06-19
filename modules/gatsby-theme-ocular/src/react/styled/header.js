@@ -7,10 +7,10 @@ import styled from 'styled-components';
 export const Header = styled.header`
   z-index: 1001;
   align-items: center;
-  background-color: ${props => props.theme.colors.mono1000};
-  color: ${props => props.theme.colors.mono100};
+  background-color: ${(props) => props.theme.colors.mono1000};
+  color: ${(props) => props.theme.colors.mono100};
   display: flex;
-  height: ${props => props.theme.sizing.scale1600};
+  height: ${(props) => props.theme.sizing.scale1600};
   justify-content: space-between;
   padding: 0 36px;
   top: 0;
@@ -39,49 +39,49 @@ export const HeaderMenuBlock = styled.div`
 `;
 
 export const HeaderLogo = styled(Link)`
-  font: ${props => props.theme.typography.font450};
+  font: ${(props) => props.theme.typography.font450};
   text-decoration: none;
-  color: ${props => props.theme.colors.mono100};
+  color: ${(props) => props.theme.colors.mono100};
   &:visited {
-    color: ${props => props.theme.colors.mono100};
+    color: ${(props) => props.theme.colors.mono100};
   }
   &:active {
-    color: ${props => props.theme.colors.mono200};
+    color: ${(props) => props.theme.colors.mono200};
   }
   &:hover {
-    color: ${props => props.theme.colors.mono200};
+    color: ${(props) => props.theme.colors.mono200};
   }
 `;
 
 export const HeaderLogoExternal = styled.a`
-  font: ${props => props.theme.typography.font450};
+  font: ${(props) => props.theme.typography.font450};
   text-decoration: none;
   &:visited {
-    color: ${props => props.theme.colors.mono100};
+    color: ${(props) => props.theme.colors.mono100};
   }
   &:active {
-    color: ${props => props.theme.colors.mono200};
+    color: ${(props) => props.theme.colors.mono200};
   }
   &:hover {
-    color: ${props => props.theme.colors.mono200};
+    color: ${(props) => props.theme.colors.mono200};
   }
 `;
 
 export const HeaderMenu = styled.div`
-  background: ${props => props.theme.colors.mono1000};
+  background: ${(props) => props.theme.colors.mono1000};
   display: flex;
   box-sizing: content-box;
   flex-direction: column;
   position: absolute;
   overflow: hidden;
   min-width: 180px;
-  max-height: ${props => props.$collapsed ? 0 : props.$nbItems * 48}px;
-  padding-bottom: ${props => props.$collapsed ? 0 : props.theme.sizing.scale800};
-  top: ${props => props.theme.sizing.scale1600};
-  left: ${props => props.theme.sizing.scale600};
-  transition-property: max-height,padding-bottom;
-  transition-duration: ${props => props.theme.animation.timing400};
-  transition-timing-function: ${props => props.theme.animation.easeInOutCurve};
+  max-height: ${(props) => (props.$collapsed ? 0 : props.$nbItems * 48)}px;
+  padding-bottom: ${(props) => (props.$collapsed ? 0 : props.theme.sizing.scale800)};
+  top: ${(props) => props.theme.sizing.scale1600};
+  left: ${(props) => props.theme.sizing.scale600};
+  transition-property: max-height, padding-bottom;
+  transition-duration: ${(props) => props.theme.animation.timing400};
+  transition-timing-function: ${(props) => props.theme.animation.easeInOutCurve};
   z-index: 100;
 
   ${isMobile} {
@@ -106,21 +106,21 @@ export const HeaderMenuBackground = styled.div`
 
 export const HeaderMenuLink = styled.a`
   display: block;
-  padding: ${props => props.theme.sizing.scale400} ${props => props.theme.sizing.scale1600};
+  padding: ${(props) => props.theme.sizing.scale400} ${(props) => props.theme.sizing.scale1600};
   text-decoration: none;
-  font: ${props => props.theme.typography.font300};
+  font: ${(props) => props.theme.typography.font300};
 
   ${isMobile} {
-    font: ${props => props.theme.typography.font500};
+    font: ${(props) => props.theme.typography.font500};
   }
   &:visited {
-    color: ${props => props.theme.colors.mono100};
+    color: ${(props) => props.theme.colors.mono100};
   }
   &:active {
-    color: ${props => props.theme.colors.mono200};
+    color: ${(props) => props.theme.colors.mono200};
   }
   &:hover {
-    color: ${props => props.theme.colors.mono200};
+    color: ${(props) => props.theme.colors.mono200};
   }
 `;
 
@@ -140,13 +140,13 @@ const StyledHamburgerMenu = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3px 1px 4px;
-  margin-right: ${props => props.theme.sizing.scale600};
-  height: ${props => props.theme.sizing.scale800};
-  width: ${props => props.theme.sizing.scale800};
+  margin-right: ${(props) => props.theme.sizing.scale600};
+  height: ${(props) => props.theme.sizing.scale800};
+  width: ${(props) => props.theme.sizing.scale800};
 `;
 
 const HamburgerBar = styled.div`
-  background-color: ${props => props.theme.colors.mono100};
+  background-color: ${(props) => props.theme.colors.mono100};
   height: 1px;
   width: 100%;
 `;
@@ -160,47 +160,47 @@ export const HamburgerMenu = ({onClick}) => (
 );
 
 export const HeaderLink = styled(Link)`
-  color: ${props => props.theme.colors.mono100};
+  color: ${(props) => props.theme.colors.mono100};
   text-decoration: none;
   &:visited {
-    color: ${props => props.theme.colors.mono100};
+    color: ${(props) => props.theme.colors.mono100};
   }
   &:active {
-    color: ${props => props.theme.colors.mono200};
+    color: ${(props) => props.theme.colors.mono200};
   }
   &:hover {
-    color: ${props => props.theme.colors.mono200};
+    color: ${(props) => props.theme.colors.mono200};
   }
 `;
 
 export const HeaderLinkExternal = styled.a`
-  color: ${props => props.theme.colors.mono100};
+  color: ${(props) => props.theme.colors.mono100};
   text-decoration: none;
   &:visited {
-    color: ${props => props.theme.colors.mono100};
+    color: ${(props) => props.theme.colors.mono100};
   }
   &:active {
-    color: ${props => props.theme.colors.mono200};
+    color: ${(props) => props.theme.colors.mono200};
   }
   &:hover {
-    color: ${props => props.theme.colors.mono200};
+    color: ${(props) => props.theme.colors.mono200};
   }
 `;
 
 export const HeaderLinkContainer = styled.div`
-  font: ${props => props.theme.typography.font300};
+  font: ${(props) => props.theme.typography.font300};
   flex: 1 1 0;
-  padding-left: ${props => props.theme.sizing.scale700};
+  padding-left: ${(props) => props.theme.sizing.scale700};
 
   ${isMobile} {
-    font: ${props => props.theme.typography.font500};
-    padding: ${props => props.theme.sizing.scale400} ${props => props.theme.sizing.scale1000};
+    font: ${(props) => props.theme.typography.font500};
+    padding: ${(props) => props.theme.sizing.scale400} ${(props) => props.theme.sizing.scale1000};
   }
 `;
 
 export const TocToggle = styled.div`
-  color: ${props => props.theme.colors.mono100};
+  color: ${(props) => props.theme.colors.mono100};
   cursor: pointer;
-  line-height: ${props => props.theme.sizing.scale1600};
+  line-height: ${(props) => props.theme.sizing.scale1600};
   user-select: none;
 `;

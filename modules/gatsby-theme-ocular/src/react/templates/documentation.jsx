@@ -26,10 +26,12 @@ export default class DocTemplate extends React.Component {
     return (
       <div style={{position: 'relative'}}>
         <MarkdownBody>
-          <Markdown path={this.props.location.pathname}
+          <Markdown
+            path={this.props.location.pathname}
             relativeLinks={relativeLinks}
             config={this.props.config}
-            body={body} />
+            body={body}
+          />
         </MarkdownBody>
       </div>
     );

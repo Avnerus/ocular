@@ -7,7 +7,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import MediaQuery from 'react-responsive';
 import {ThemeProvider, createGlobalStyle} from 'styled-components';
-import {withPrefix} from "gatsby";
+import {withPrefix} from 'gatsby';
 
 import {WebsiteConfigProvider} from '../components/website-config';
 import SEO from '../components/SEO';
@@ -18,15 +18,10 @@ import DocsHeader from '../components/docs-header';
 import defaultTheme from '../default-theme';
 import createTheme from '../styled/create-theme';
 
-import {
-  BodyContainerFull,
-  BodyContainerToC,
-  Body
-} from '../styled/body';
+import {BodyContainerFull, BodyContainerToC, Body} from '../styled/body';
 
 import {HeaderContainer} from '../styled/header';
 import {TocContainer} from '../styled/toc';
-
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -105,13 +100,9 @@ export default class Layout extends React.Component {
             isDocHeader
           />
         </HeaderContainer>
-        <TocContainer $isTocOpen={isTocOpen}>
-          {this.renderTOC(tableOfContents)}
-        </TocContainer>
+        <TocContainer $isTocOpen={isTocOpen}>{this.renderTOC(tableOfContents)}</TocContainer>
 
-        <BodyContainerToC>
-          {React.cloneElement(children, { config: config })}
-        </BodyContainerToC>
+        <BodyContainerToC>{React.cloneElement(children, {config: config})}</BodyContainerToC>
         {/* <Footer /> */}
       </Body>
     );
@@ -130,9 +121,7 @@ export default class Layout extends React.Component {
           />
         </HeaderContainer>
 
-        <BodyContainerFull>
-          {React.cloneElement(children, { config: config })}
-        </BodyContainerFull>
+        <BodyContainerFull>{React.cloneElement(children, {config: config})}</BodyContainerFull>
 
         {/* <Footer /> */}
       </Body>
@@ -151,23 +140,13 @@ export default class Layout extends React.Component {
       throw new Error(`Unknown toc type ${pageContext.toc}`);
     }
 
-    return (
-      <TableOfContents
-        chapters={toc}
-        slug={pageContext.slug}
-      />
-    );
+    return <TableOfContents chapters={toc} slug={pageContext.slug} />;
   }
 
   render() {
     // Since gatsby's StaticQueries can't run in a plugin, we rely on the app website's
     // Layout wrapper component to query for us and pass in the data.
-    const {
-      pageContext,
-      config,
-      tableOfContents,
-      path
-    } = this.props;
+    const {pageContext, config, tableOfContents, path} = this.props;
 
     const theme = this.getTheme();
     let title = config.PROJECT_NAME;
@@ -176,20 +155,16 @@ export default class Layout extends React.Component {
     }
 
     return (
-      <WebsiteConfigProvider
-        value={{config, theme, tableOfContents}}
-      >
+      <WebsiteConfigProvider value={{config, theme, tableOfContents}}>
         <GlobalStyle />
         <ThemeProvider theme={theme}>
           <div>
             <SEO path={path} pageContext={pageContext} config={config} />
             <Helmet>
               <title>{title}</title>
-              {
-                config.STYLESHEETS.map((url, i) => {
-                  return <link key={i} rel="stylesheet" href={withPrefix(url)} type="text/css" />
-                })
-              }
+              {config.STYLESHEETS.map((url, i) => {
+                return <link key={i} rel="stylesheet" href={withPrefix(url)} type="text/css" />;
+              })}
               <link rel="icon" type="img/ico" href="favicon.ico" />
             </Helmet>
             {pageContext.toc

@@ -55,7 +55,9 @@ const SafeLink = ({
         <TocHeader $depth={depth}>{name}</TocHeader>
       ) : (
         <TocLink $depth={depth} $active={active}>
-          <Link to={path} title={name}>{name}</Link>
+          <Link to={path} title={name}>
+            {name}
+          </Link>
         </TocLink>
       )}
     </TocEntry>
@@ -104,16 +106,13 @@ const renderRoute = ({route, id, index, depth, tocState, toggleEntry}) => {
 
   const remark = route.childMdx;
   // first syntax is toc for documentation, second is toc for examples
-  const name =
-    (remark && remark.frontmatter && remark.frontmatter.title) || route.title;
+  const name = (remark && remark.frontmatter && remark.frontmatter.title) || route.title;
   const target = (remark && remark.fields && remark.fields.slug) || route.path;
   return (
     <div key={index}>
       <li>
         <SafeLink
-          active={
-            tocState[updatedId] && tocState[updatedId].isSelected === true
-          }
+          active={tocState[updatedId] && tocState[updatedId].isSelected === true}
           depth={depth}
           name={name}
           path={target}

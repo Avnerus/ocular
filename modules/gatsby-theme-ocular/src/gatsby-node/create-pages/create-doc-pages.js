@@ -34,7 +34,7 @@ function queryMarkdownDocs(graphql) {
         }
       }
     `
-  ).then(result => {
+  ).then((result) => {
     if (result.errors) {
       /* eslint no-console: "off" */
       console.log(result.errors);
@@ -48,14 +48,14 @@ function queryMarkdownDocs(graphql) {
 function createDocMarkdownPages({graphql, actions}, ocularOptions) {
   const {createPage} = actions;
 
-  return queryMarkdownDocs(graphql).then(result => {
+  return queryMarkdownDocs(graphql).then((result) => {
     const rootFolder = ocularOptions.ROOT_FOLDER;
     const pathToSlug = result.data.allMdx.edges.map(({node}) => ({
       source: node.fileAbsolutePath,
       target: node.fields.slug
     }));
 
-    result.data.allMdx.edges.forEach(edge => {
+    result.data.allMdx.edges.forEach((edge) => {
       let relativeLinks = {};
       pathToSlug.forEach(({source, target}) => {
         relativeLinks = addToRelativeLinks({
@@ -88,10 +88,7 @@ function createDocMarkdownPages({graphql, actions}, ocularOptions) {
 }
 
 module.exports = function createDocPages({graphql, actions}, ocularOptions) {
-  log.log(
-    {color: COLOR.CYAN, priority: 1},
-    `Creating docs pages...`
-  )();
+  log.log({color: COLOR.CYAN, priority: 1}, `Creating docs pages...`)();
 
   return createDocMarkdownPages({graphql, actions}, ocularOptions);
 };

@@ -34,7 +34,7 @@ const ContribLink = styled.a`
   height: 8rem;
   text-decoration: none;
   text-align: center;
-  color: ${props => props.theme.colors.mono900};
+  color: ${(props) => props.theme.colors.mono900};
 
   &:hover img {
     border: 4px solid #fff;
@@ -66,8 +66,8 @@ export default class GithubContributors extends Component {
 
     const {project} = this.props;
     fetch(`https://api.github.com/repos/${project}/contributors`)
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         cachedResponse = response;
         this.setState({response});
       });
@@ -80,20 +80,20 @@ export default class GithubContributors extends Component {
       <div>
         <h2 style={{textAlign: 'center'}}>Contributors</h2>
         <ContribContainer>
-
-          {contributors.map(contributor =>
-            contributor && (
-              <ContribLink
-                target="_blank"
-                rel="noopener noreferrer"
-                href={contributor.html_url}
-                key={contributor.id}
-              >
-                <ContribImage src={contributor.avatar_url} width="100%" alt={contributor.login} />
-                <div>{contributor.login}</div>
-              </ContribLink>
-            ))
-          }
+          {contributors.map(
+            (contributor) =>
+              contributor && (
+                <ContribLink
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={contributor.html_url}
+                  key={contributor.id}
+                >
+                  <ContribImage src={contributor.avatar_url} width="100%" alt={contributor.login} />
+                  <div>{contributor.login}</div>
+                </ContribLink>
+              )
+          )}
         </ContribContainer>
       </div>
     );

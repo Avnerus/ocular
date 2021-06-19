@@ -15,8 +15,8 @@ function parseToc(queue, entry) {
     if (n.entry === entry) {
       return n;
     }
-    (n.chapters || []).forEach(c => queue.push(c));
-    (n.entries || []).forEach(e => queue.push(e));
+    (n.chapters || []).forEach((c) => queue.push(c));
+    (n.entries || []).forEach((e) => queue.push(e));
   }
   // entry not found
   return null;
@@ -60,7 +60,7 @@ module.exports.processNewMarkdownNode = function processNewMarkdownNode(
 
   // Store the path before potentially modifying as we want to keep the HOME_PATH for ToC lookup
   const tocNodePath = relPath;
-  
+
   // remove prefix from the path to set HOME_PATH as root url (index)
   if (ocularOptions.HOME_PATH) {
     relPath = removeURLPathPrefix(relPath, ocularOptions.HOME_PATH);

@@ -82,7 +82,7 @@ function queryExamplesData(graphql) {
       }
     }
   `)
-    .then(result => {
+    .then((result) => {
       if (result.errors) {
         /* eslint no-console: "off" */
         console.log(result.errors);
@@ -94,18 +94,15 @@ function queryExamplesData(graphql) {
       const thumbnailsPublicUrls = getExampleThumbnails(result.data);
 
       // matches public urls to paths of images
-      const examplesWithImages = EXAMPLES.map(example => ({
+      const examplesWithImages = EXAMPLES.map((example) => ({
         ...example,
         imageSrc: thumbnailsPublicUrls[example.image]
       }));
 
       return examplesWithImages;
     })
-    .catch(error => {
-      log.log(
-        {color: COLOR.BRIGHT_YELLOW},
-        `error in createPage query with images: ${error}`
-      )();
+    .catch((error) => {
+      log.log({color: COLOR.BRIGHT_YELLOW}, `error in createPage query with images: ${error}`)();
       return graphql(`
         {
           site {
@@ -119,7 +116,7 @@ function queryExamplesData(graphql) {
             }
           }
         }
-      `).then(result => {
+      `).then((result) => {
         if (result.errors) {
           /* eslint no-console: "off" */
           console.log(result.errors);
@@ -135,14 +132,8 @@ function createExampleGalleryPage(examples, examplesToc, createPage, ocularOptio
   if (examples.length === 0) {
     return;
   }
-  log.log(
-    {color: COLOR.CYAN, priority: 1},
-    `Creating examples page`
-  )();
-  log.log(
-    {color: COLOR.RED, priority: 4},
-    `with data ${JSON.stringify(examples)}`
-  )();
+  log.log({color: COLOR.CYAN, priority: 1}, `Creating examples page`)();
+  log.log({color: COLOR.RED, priority: 4}, `with data ${JSON.stringify(examples)}`)();
 
   const componentUrl = PAGE_TEMPLATES['EXAMPLE_GALLERY_PAGE_URL'];
 
@@ -157,13 +148,10 @@ function createExampleGalleryPage(examples, examplesToc, createPage, ocularOptio
 }
 
 function createIndividualExamplePages(examples, examplesToc, createPage, ocularOptions) {
-  examples.forEach(example => {
+  examples.forEach((example) => {
     const exampleName = example.title;
 
-    log.log(
-      {color: COLOR.CYAN, priority: 1},
-      `Creating example page ${example.title}}`
-    )();
+    log.log({color: COLOR.CYAN, priority: 1}, `Creating example page ${example.title}}`)();
 
     const componentUrl = example.componentUrl;
 
@@ -204,7 +192,7 @@ function createExamplesToc(examples) {
 module.exports = function createExamplePages({graphql, actions}, ocularOptions) {
   const {createPage} = actions;
 
-  return queryExamplesData(graphql).then(examples => {
+  return queryExamplesData(graphql).then((examples) => {
     const examplesToc = createExamplesToc(examples);
     createExampleGalleryPage(examples, examplesToc, createPage, ocularOptions);
     createIndividualExamplePages(examples, examplesToc, createPage, ocularOptions);

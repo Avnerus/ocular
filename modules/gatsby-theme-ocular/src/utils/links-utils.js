@@ -13,7 +13,7 @@ const parseLinks = (href, source, relativeLinks, config) => {
   } else {
     relPath = linkFromFileToFile(source, relPath);
   }
-  
+
   const anchor = href.match(/#.*/);
   // relative link ie doc to doc
   const relativeLink = relativeLinks[relPath];
@@ -28,10 +28,7 @@ const parseLinks = (href, source, relativeLinks, config) => {
 // in that same scenario, the relative path between folders will be '', and overall path just 'to'.
 
 function linkFromFileToFile(sourceFile, targetFile) {
-  const relativePathFromDirToDir = path.relative(
-    sourceFile,
-    path.dirname(targetFile)
-  );
+  const relativePathFromDirToDir = path.relative(sourceFile, path.dirname(targetFile));
   const fileName = path.basename(targetFile, '.md');
   if (fileName === 'README') {
     return path.join(
@@ -73,12 +70,8 @@ function addToRelativeLinks({source, target, rootFolder, edge, relativeLinks}) {
     )();
     return {};
   }
-  const relativeToRootFolder =
-    rootFolder && linkFromFileToFile(rootFolder, source);
-  const relativeToCurrentSlug = linkFromFileToFile(
-    edge.node.fields.path,
-    target
-  );
+  const relativeToRootFolder = rootFolder && linkFromFileToFile(rootFolder, source);
+  const relativeToCurrentSlug = linkFromFileToFile(edge.node.fields.path, target);
 
   const absoluteTarget = `/${target}`;
 

@@ -20,10 +20,7 @@
 // THE SOFTWARE.
 
 import React, {Component} from 'react';
-import ControlledHeader, {
-  generateHeaderLinks,
-  propTypes
-} from './header.component';
+import ControlledHeader, {generateHeaderLinks, propTypes} from './header.component';
 
 // we are exposing 2 header components.
 // 1 - DocsHeader, which will update the state of the top level layout.

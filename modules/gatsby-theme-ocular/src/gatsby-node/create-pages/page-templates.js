@@ -5,20 +5,11 @@ const templatePath = path.resolve(__dirname, '../../react/templates');
 // PATHS TO REACT PAGES
 const INDEX_PAGE_URL = path.resolve(templatePath, 'home.jsx');
 
-const DOC_MARKDOWN_PAGE_URL = path.resolve(
-  templatePath,
-  'documentation.jsx'
-);
+const DOC_MARKDOWN_PAGE_URL = path.resolve(templatePath, 'documentation.jsx');
 
-const MARKDOWN_PAGE_URL = path.resolve(
-  templatePath,
-  'page.jsx'
-);
+const MARKDOWN_PAGE_URL = path.resolve(templatePath, 'page.jsx');
 
-const EXAMPLE_GALLERY_PAGE_URL = path.resolve(
-  templatePath,
-  'examples.jsx'
-);
+const EXAMPLE_GALLERY_PAGE_URL = path.resolve(templatePath, 'examples.jsx');
 
 const SEARCH_PAGE_URL = path.resolve(templatePath, 'search.jsx');
 

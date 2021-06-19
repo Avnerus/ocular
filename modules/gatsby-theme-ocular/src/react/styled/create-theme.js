@@ -1,4 +1,3 @@
-
 export default function createTheme(primitives) {
   return {
     breakpoints: {

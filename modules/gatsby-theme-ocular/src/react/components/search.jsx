@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 export default class SearchIcon extends Component {
   render() {
     return (
-      <svg viewBox="0 0 24 24" {...this.props} >
+      <svg viewBox="0 0 24 24" {...this.props}>
         <title>Search</title>
         <path
           fillRule="evenodd"

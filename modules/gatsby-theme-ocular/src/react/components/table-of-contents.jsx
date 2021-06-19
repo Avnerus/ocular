@@ -31,10 +31,7 @@ function isOpen(entry, expanded) {
   // be expanded.
   // either it's manually expanded, or it's on the active route and
   // it's not manually collapsed.
-  return (
-    expanded[entry.id] === true ||
-    (entry.childIsSelected && expanded[entry.id] !== false)
-  );
+  return expanded[entry.id] === true || (entry.childIsSelected && expanded[entry.id] !== false);
 }
 
 function updateHeights(tocEntries, expanded) {
@@ -44,7 +41,7 @@ function updateHeights(tocEntries, expanded) {
   // why is it important to compute heights? because without an an absolute
   // number we can't transition on height and have smooth collapse effects.
 
-  Object.values(tocEntries).forEach(tocEntry => {
+  Object.values(tocEntries).forEach((tocEntry) => {
     if (tocEntry.children) {
       if (isOpen(tocEntry, expanded)) {
         let queue = [tocEntry];
@@ -53,7 +50,7 @@ function updateHeights(tocEntries, expanded) {
           const current = queue.shift();
           height = height + 1;
           if (isOpen(current, expanded)) {
-            current.children.forEach(c => queue.push(tocEntries[c]));
+            current.children.forEach((c) => queue.push(tocEntries[c]));
           }
         }
         tocEntry.height = height;
@@ -87,22 +84,22 @@ function getTocState({chapters, slug, expanded}) {
     const {id} = current;
     entries[id] = {id};
 
-    const children = (current.chapters || current.entries || []).map(
-      (child, i) => ({
-        ...child,
-        id: id.concat(i),
-        parents: [...current.parents, id]
-      })
-    );
+    const children = (current.chapters || current.entries || []).map((child, i) => ({
+      ...child,
+      id: id.concat(i),
+      parents: [...current.parents, id]
+    }));
     if (children.length) {
-      entries[id].children = children.map(c => c.id);
+      entries[id].children = children.map((c) => c.id);
     }
-    children.forEach(c => queue.push(c));
+    children.forEach((c) => queue.push(c));
 
-    let isSelected = current.childMdx ? current.childMdx.fields.slug === slug : current.path === slug;
+    let isSelected = current.childMdx
+      ? current.childMdx.fields.slug === slug
+      : current.path === slug;
     if (isSelected) {
       // only happens for leave nodes
-      current.parents.forEach(parent => {
+      current.parents.forEach((parent) => {
         entries[parent].childIsSelected = true;
         // currently the behavior of entries is to toggle them
         // if we switch to using them as link to the first child (as before)
@@ -143,9 +140,12 @@ export default class TableOfContents extends PureComponent {
   componentDidUpdate(prevProps) {
     const {chapters, slug, firstItemIsExpanded} = this.props;
     if (slug !== prevProps.slug || chapters !== prevProps.chapters) {
-      const expanded = chapters === prevProps.chapters
-        ? this.state.expanded
-        : (firstItemIsExpanded ? {0: true} : {});
+      const expanded =
+        chapters === prevProps.chapters
+          ? this.state.expanded
+          : firstItemIsExpanded
+          ? {0: true}
+          : {};
       const tocState = getTocState({chapters, slug, expanded});
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({
@@ -180,12 +180,6 @@ export default class TableOfContents extends PureComponent {
     if (!tree) {
       return null;
     }
-    return (
-      <ControlledToc
-        tree={tree}
-        tocState={tocState}
-        toggleEntry={this.toggleEntry}
-      />
-    );
+    return <ControlledToc tree={tree} tocState={tocState} toggleEntry={this.toggleEntry} />;
   }
 }
